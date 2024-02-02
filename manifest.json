@@ -1,0 +1,10 @@
+{
+	"id": "obsidian-list-blockquotes",
+	"name": "List Blockquotes",
+	"version": "0.1.0",
+	"minAppVersion": "0.15.0",
+	"description": "Render blockquotes within nested lists.",
+	"author": "replcat",
+	"authorUrl": "https://github.com/replcat",
+	"isDesktopOnly": false
+}
