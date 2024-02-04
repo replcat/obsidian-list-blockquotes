@@ -3,6 +3,8 @@ const { syntaxTree } = require("@codemirror/language")
 const { ViewPlugin, Decoration, ViewUpdate, EditorView } = require("@codemirror/view")
 const { RangeSet, RangeSetBuilder } = require("@codemirror/state")
 
+const BLOCKQUOTE_PATTERN = /^\s*>[>\s]*/
+
 /**
  * @param {EditorView} view
  * @returns {RangeSet<Decoration>}
@@ -13,7 +15,14 @@ function decorate(view) {
   syntaxTree(view.state).iterate({
     enter: node => {
       if (node.name.startsWith("list")) {
-        if (view.state.sliceDoc(node.from, node.to).startsWith("> ")) {
+        const slice = view.state.sliceDoc(node.from, node.to)
+        const match = slice.match(BLOCKQUOTE_PATTERN)
+        if (match) {
+          const image = match[0]
+          builder.add(node.from, node.from + image.length, Decoration.mark({
+            class: "cm-formatting cm-formatting-quote",
+            inclusive: true,
+          }))
           builder.add(node.from, node.to, Decoration.mark({
             class: "cm-quote",
             inclusive: true,
