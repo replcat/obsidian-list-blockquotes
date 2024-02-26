@@ -20,11 +20,7 @@ function decorate(view) {
         if (match) {
           const image = match[0]
           builder.add(node.from, node.from + image.length, Decoration.mark({
-            class: "cm-formatting cm-formatting-quote",
-            inclusive: true,
-          }))
-          builder.add(node.from, node.to, Decoration.mark({
-            class: "cm-quote",
+            class: "cm-formatting cm-formatting-quote cm-quote",
             inclusive: true,
           }))
         }

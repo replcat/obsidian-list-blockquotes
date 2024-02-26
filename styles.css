@@ -1,0 +1,3 @@
+.HyperMD-list-line:has(.cm-quote) {
+  color: var(--blockquote-color);
+}
